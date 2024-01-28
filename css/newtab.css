@@ -1,5 +1,14 @@
-#time {
-  font-size: 36px; /* Adjust the font size as needed */
-  font-family: Arial, sans-serif;
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ensure body takes up full viewport height */
+  margin: 0; /* Remove default margin */
   color: white;
+  font-family: Baskerville, "Baskerville Old Face", "Goudy Old Style", Garamond,
+    "Times New Roman", serif;
+}
+#time {
+  font-size: 100px; /* Adjust the font size as needed */
 }
