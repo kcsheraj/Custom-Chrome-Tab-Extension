@@ -1,8 +1,7 @@
 // newtab.js
-
+// Code inside this function will be executed once the DOM is fully loaded.
 document.addEventListener("DOMContentLoaded", function () {
-  // Code inside this function will be executed once the DOM is fully loaded.
-  // Fetch a random image from Unsplash API
+  // FETCH A RANDOM IMAGE FROM UNISPLASH API
   fetch("https://source.unsplash.com/random/1920x1080/?NATURE")
     .then((response) => {
       // Get the URL of the random image
@@ -16,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch((error) => console.error("Error fetching random image:", error));
 
-  // Fetch a random quote from Quotable API
+  //FETCH A RANDOM QUOTE FROM QUOTABLE API
   fetch("https://api.quotable.io/random")
     .then((response) => response.json())
     .then((data) => {
@@ -38,6 +37,62 @@ document.addEventListener("DOMContentLoaded", function () {
     const name = this.textContent;
     chrome.storage.local.set({ name: name });
   });
+
+  //POMODORO TIMER
+  const timerDisplay = document.getElementById("timer");
+  const startButton = document.getElementById("start");
+  const pauseButton = document.getElementById("pause");
+  const resetButton = document.getElementById("reset");
+
+  let timer;
+  let timeLeft;
+  let isPaused = false;
+
+  function startTimer(durationInSeconds) {
+    let endTime = Date.now() + durationInSeconds * 1000;
+
+    timer = setInterval(updateTimer, 1000);
+
+    function updateTimer() {
+      if (!isPaused) {
+        timeLeft = Math.round((endTime - Date.now()) / 1000);
+
+        if (timeLeft < 0) {
+          clearInterval(timer);
+          timerDisplay.textContent = "00:00";
+          alert("Time is up!");
+        } else {
+          let minutes = Math.floor(timeLeft / 60);
+          let seconds = timeLeft % 60;
+          timerDisplay.textContent = `${minutes
+            .toString()
+            .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+        }
+      }
+    }
+  }
+
+  function pauseTimer() {
+    isPaused = true;
+  }
+
+  function resumeTimer() {
+    isPaused = false;
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timerDisplay.textContent = "25:00";
+    isPaused = false;
+  }
+
+  startButton.addEventListener("click", () => {
+    startTimer(25 * 60);
+  });
+
+  pauseButton.addEventListener("click", pauseTimer);
+
+  resetButton.addEventListener("click", resetTimer);
 });
 
 //TIME FUNCTIONS
