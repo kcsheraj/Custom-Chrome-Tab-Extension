@@ -3,7 +3,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Code inside this function will be executed once the DOM is fully loaded.
   // Fetch a random image from Unsplash API
-  fetch("https://source.unsplash.com/random/1920x1080/?landscapes")
+  fetch("https://source.unsplash.com/random/1920x1080/?darkgreen")
     .then((response) => {
       // Get the URL of the random image
       const imageUrl = response.url;
@@ -15,6 +15,20 @@ document.addEventListener("DOMContentLoaded", function () {
       showSecondsOnHover();
     })
     .catch((error) => console.error("Error fetching random image:", error));
+
+  const greeting = "Hello, ";
+  // Load saved name from storage
+  chrome.storage.local.get(["name"], function (result) {
+    if (result.name) {
+      document.getElementById("name").textContent = greeting + result.name;
+    }
+  });
+
+  // Listen for changes in the name and save it to storage
+  document.getElementById("name").addEventListener("input", function () {
+    const name = this.textContent;
+    chrome.storage.local.set({ name: name });
+  });
 });
 
 function updateTime() {
