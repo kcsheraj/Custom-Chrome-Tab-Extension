@@ -3,7 +3,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Code inside this function will be executed once the DOM is fully loaded.
   // Fetch a random image from Unsplash API
-  fetch("https://source.unsplash.com/random/1920x1080/?darkgreen")
+  fetch("https://source.unsplash.com/random/1920x1080/?NATURE")
     .then((response) => {
       // Get the URL of the random image
       const imageUrl = response.url;
@@ -16,6 +16,16 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch((error) => console.error("Error fetching random image:", error));
 
+  // Fetch a random quote from Quotable API
+  fetch("https://api.quotable.io/random")
+    .then((response) => response.json())
+    .then((data) => {
+      // Set the quote text to the h2 element
+      document.getElementById("quote").textContent = data.content;
+    })
+    .catch((error) => console.error("Error fetching random quote:", error));
+
+  //GREETING STORAGE
   const greeting = "Hello, ";
   // Load saved name from storage
   chrome.storage.local.get(["name"], function (result) {
@@ -23,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("name").textContent = greeting + result.name;
     }
   });
-
   // Listen for changes in the name and save it to storage
   document.getElementById("name").addEventListener("input", function () {
     const name = this.textContent;
@@ -31,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+//TIME FUNCTIONS
 function updateTime() {
   var now = new Date();
   var hours = now.getHours();

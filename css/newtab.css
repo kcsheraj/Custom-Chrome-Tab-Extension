@@ -12,3 +12,10 @@ body {
 #time {
   font-size: 100px; /* Adjust the font size as needed */
 }
+.quote-div {
+  position: absolute;
+  bottom: 5%;
+  width: 100%;
+  text-align: center; /* Center horizontally */
+  margin: 10px;
+}
