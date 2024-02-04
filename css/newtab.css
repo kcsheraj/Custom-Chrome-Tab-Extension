@@ -54,18 +54,12 @@ h1 {
 
 .pomodoro-container {
   position: fixed;
-  top: 50%; /* Adjust the position as needed */
-  right: 20px; /* Adjust the position as needed */
-  transform: translateY(-50%);
-  background-color: rgba(
-    96,
-    96,
-    93,
-    0.472
-  ); /* Adjust the background color and opacity */
+  top: 20px; /* Adjust the top position */
+  right: 20px; /* Adjust the right position */
+  background-color: rgba(96, 96, 93, 0.472);
   padding: 10px;
   border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add shadow for better visibility */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 #timer {
@@ -82,6 +76,8 @@ h1 {
   padding: 5px; /* Adjust padding */
   margin: 5px;
   font-size: 18px; /* Increase font size */
+  font-family: Baskerville, "Baskerville Old Face", "Goudy Old Style", Garamond,
+    "Times New Roman", serif; /* Set the same font family */
   border: none; /* Remove border */
   border-radius: 20px; /* Add border radius */
   background-color: rgba(255, 255, 255, 0.8); /* Set background color */
